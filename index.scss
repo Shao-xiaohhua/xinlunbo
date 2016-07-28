@@ -1,0 +1,115 @@
+*{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+@mixin fang($shu){
+  width: $shu;
+  height: $shu;
+  background: red;
+}
+@mixin changfang($gao,$kuan){
+  width: $kuan;
+  height: $gao;
+  background: blue;
+}
+@mixin yuan($shu){
+  width:$shu ;
+  height: $shu;
+  border-radius: 50%;
+  background: yellow;
+}
+
+@mixin shangxia{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  margin: auto;
+}
+@mixin zuoyou{
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+@mixin gai{
+  width: 100%;
+  height: 100%;
+  background: yellowgreen;
+}
+$yanse:red,blue,yellow,black;
+//开始
+.lunbo-box{
+  overflow: hidden;
+  @include changfang(100%,100%);
+  @include zuoyou;
+  .bohezi{
+    @include gai;
+    li{
+      @include gai;
+      font-size: 50px;
+      color: aqua;
+      text-align: center;
+      line-height: 300px;
+      @for $i from 1 through 4{
+
+          &:nth-child(#{$i}){
+            background:nth($yanse,$i);
+          }
+
+
+      }
+      position: absolute;
+    }
+    .tu.now{
+      z-index: 50;
+      transition: transform 0.6s ease;
+      transform: translateX(0);
+    }
+    .tu.left{
+      transform: translateX(-100%);
+    }
+    .tu.right{
+      transform: translateX(100%);
+    }
+    .tu.top{
+      transform: translateY(-100%);
+    }
+    .tu.bottom{
+      transform: translateY(100%);
+    }
+  }
+
+.zuo{
+  @include shangxia;
+  @include changfang(100px,50px);
+  z-index: 8000;
+  background: #fff;
+}
+  .you{
+    @include shangxia;
+    @include changfang(100px,50px);
+    z-index: 8000;
+    right: 0;
+    background: #fff;
+  }
+  .dian{
+     z-index: 80000000000000000000000;
+    @include changfang(20px,104px);
+    @include zuoyou;
+    bottom: 10px;
+    .diandian{
+
+
+      float: left;
+      @include yuan(10px);
+      margin: 8px;
+      background:orangered ;
+    }
+    .diandian.bian{
+      box-shadow: 0 0 0 2px #fff;
+    }
+    background: none;
+  }
+}
